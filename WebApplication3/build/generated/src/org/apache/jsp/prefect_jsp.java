@@ -1,0 +1,114 @@
+package org.apache.jsp;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.util.List;
+import newpackage3.dblogin;
+import newpackage3.Prefect;
+
+public final class prefect_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List<String> _jspx_dependants;
+
+  private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
+
+  public java.util.List<String> getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+    try {
+      response.setContentType("text/html;charset=UTF-8");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+      _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<html>\n");
+      out.write("<head>\n");
+      out.write("    <title>Prefects</title>\n");
+      out.write("    <style>\n");
+      out.write("        .prefect {\n");
+      out.write("            width: 25%;\n");
+      out.write("            float: left;\n");
+      out.write("            padding: 10px;\n");
+      out.write("            box-sizing: border-box;\n");
+      out.write("            text-align: center;\n");
+      out.write("        }\n");
+      out.write("        .prefect img {\n");
+      out.write("            width: 100px;\n");
+      out.write("            height: 100px;\n");
+      out.write("            border-radius: 50%;\n");
+      out.write("            margin-bottom: 10px;\n");
+      out.write("        }\n");
+      out.write("    </style>\n");
+      out.write("</head>\n");
+      out.write("<body>\n");
+      out.write("    <h1>Prefect Details</h1>\n");
+      out.write("    ");
+ 
+    List<Prefect> prefectList = dblogin.getAllPrefects();
+    for (Prefect prefect : prefectList) {
+    
+      out.write("\n");
+      out.write("    <div class=\"prefect\">\n");
+      out.write("        <img src=\"user.jpg\" alt=\"User Image\">\n");
+      out.write("        <div>");
+      out.print( prefect.getUsername() );
+      out.write("</div>\n");
+      out.write("        <div>");
+      out.print( prefect.getPassword() );
+      out.write("</div>\n");
+      out.write("         <form action=\"PrefectServlet\" method=\"post\">\n");
+      out.write("            <input type=\"hidden\" name=\"username\" value=\"");
+      out.print( prefect.getUsername() );
+      out.write("\">\n");
+      out.write("            <input type=\"hidden\" name=\"password\" value=\"");
+      out.print( prefect.getPassword() );
+      out.write("\">\n");
+      out.write("            <button class=\"button\" type=\"submit\" name=\"action\" value=\"remove\">Remove</button>\n");
+      out.write("        </form>\n");
+      out.write("    </div>\n");
+      out.write("    ");
+ } 
+      out.write("\n");
+      out.write("    <div style=\"clear: both;\"></div>\n");
+      out.write("</body>\n");
+      out.write("</html>\n");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          out.clearBuffer();
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}
