@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Create Login</h1>
-    <form action="LoginServlet" method="post">
+    <form action="LoginServlet" method="post" enctype="multipart/form-data">
         <table border="0">
             <tbody>
                 <tr>
@@ -17,6 +17,10 @@
                 <tr>
                     <td>Password</td>
                     <td><input type="password" name="pass" value="" /></td>
+                </tr>
+                <tr>
+                    <td>Add image</td>
+                    <td><input type="file" name="img"></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="CREATE" /></td>

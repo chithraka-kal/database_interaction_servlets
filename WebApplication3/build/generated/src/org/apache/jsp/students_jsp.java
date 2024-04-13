@@ -77,7 +77,9 @@ public final class students_jsp extends org.apache.jasper.runtime.HttpJspBase
     
       out.write("\r\n");
       out.write("    <div class=\"user\">\r\n");
-      out.write("        <img src=\"user.jpg\" alt=\"User Image\">\r\n");
+      out.write("        <img src=\"img/");
+      out.print( user.getImg() );
+      out.write("\" alt=\"User Image\">\r\n");
       out.write("        <div>User Name: ");
       out.print( user.getUname() );
       out.write("</div>\r\n");
@@ -102,6 +104,7 @@ public final class students_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <script>\r\n");
       out.write("</body>\r\n");
       out.write("</html>\r\n");
+      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

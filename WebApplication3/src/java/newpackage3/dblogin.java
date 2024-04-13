@@ -13,11 +13,11 @@ import newpackage3.Prefect;
 import newpackage3.User;
 
 public class dblogin {
-
-    public static void insertUser(String name, String pass) {
+ // Insert data into student table
+    public static void insertUser(String name, String pass, String imgFileName) {
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/login";
-        String query = "INSERT INTO `std`(`uname`, `passwd`) VALUES (?, ?)";
+        String query = "INSERT INTO `std`(`uname`, `passwd`, `img`) VALUES (?, ?, ?)";
 
         try {
             Class.forName(driver);
@@ -25,13 +25,14 @@ public class dblogin {
                  PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, name);
                 pst.setString(2, pass);
+                pst.setString(3, imgFileName);
                 pst.executeUpdate();
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(dblogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+  // Retrieve all prefects from student table
     public static List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
 
@@ -48,8 +49,9 @@ public class dblogin {
                 while (rs.next()) {
                     String uname = rs.getString("uname");
                     String passwd = rs.getString("passwd");
+                    String imgFileName = rs.getString("img");
 
-                    User user = new User(uname, passwd);
+                    User user = new User(uname, passwd, imgFileName);
                     userList.add(user);
                 }
             }
@@ -126,4 +128,5 @@ public class dblogin {
             Logger.getLogger(dblogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

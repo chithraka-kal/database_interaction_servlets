@@ -29,7 +29,7 @@
     for (User user : userList) {
     %>
     <div class="user">
-        <img src="user.jpg" alt="User Image">
+        <img src="img/<%= user.getImg() %>" alt="User Image">
         <div>User Name: <%= user.getUname() %></div>
         <div>Password: <%= user.getPasswd() %></div>
         <form action="PrefectServlet" method="post">
@@ -44,3 +44,5 @@
     <script>
 </body>
 </html>
+
+<%--<%= user.getImgFileName() %>--%>
