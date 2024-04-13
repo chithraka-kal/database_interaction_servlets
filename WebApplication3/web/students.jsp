@@ -35,11 +35,12 @@
         <form action="PrefectServlet" method="post">
             <input type="hidden" name="uname" value="<%= user.getUname() %>">
             <input type="hidden" name="passwd" value="<%= user.getPasswd() %>">
-            <button class="button" type="submit">Prefect</button>
+            <button class="button" id="myButton" type="submit" value="add" onclick="handleClick()">Prefect</button>
         </form>
     </div>
     <% } %>
     <div style="clear: both;"></div>
     </div>
+    <script>
 </body>
 </html>

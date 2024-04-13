@@ -80,53 +80,50 @@ public class dblogin {
     }
         
     // Retrieve all prefects from prefect table
-public static List<Prefect> getAllPrefects() {
-    List<Prefect> prefectList = new ArrayList<>();
+    public static List<Prefect> getAllPrefects() {
+        List<Prefect> prefectList = new ArrayList<>();
 
-    String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/login";
-    String query = "SELECT * FROM prefect";
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/login";
+        String query = "SELECT * FROM prefect";
 
-    try {
-        Class.forName(driver);
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-             PreparedStatement pst = con.prepareStatement(query);
-             ResultSet rs = pst.executeQuery()) {
+        try {
+            Class.forName(driver);
+            try (Connection con = DriverManager.getConnection(url, "root", "");
+                 PreparedStatement pst = con.prepareStatement(query);
+                 ResultSet rs = pst.executeQuery()) {
 
-            while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
+                while (rs.next()) {
+                    String username = rs.getString("username");
+                    String password = rs.getString("password");
 
-                Prefect prefect = new Prefect(username, password);
-                prefectList.add(prefect);
+                    Prefect prefect = new Prefect(username, password);
+                    prefectList.add(prefect);
+                }
             }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(dblogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException | SQLException ex) {
-        Logger.getLogger(dblogin.class.getName()).log(Level.SEVERE, null, ex);
+
+        return prefectList;
     }
 
-    return prefectList;
-}
+    // Remove data from prefect table
+    public static void removePrefect(String username, String password) {
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/login";
+        String query = "DELETE FROM prefect WHERE username = ? AND password = ?";
 
-    // remove data from prefect table
-public static void removePrefect(String username, String password) {
-    String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/login";
-    String query = "DELETE FROM prefect WHERE username = ? AND password = ?";
-
-    try {
-        Class.forName(driver);
-        try (Connection con = DriverManager.getConnection(url, "root", "");
-             PreparedStatement pst = con.prepareStatement(query)) {
-            pst.setString(1, username);
-            pst.setString(2, password);
-            pst.executeUpdate();
+        try {
+            Class.forName(driver);
+            try (Connection con = DriverManager.getConnection(url, "root", "");
+                 PreparedStatement pst = con.prepareStatement(query)) {
+                pst.setString(1, username);
+                pst.setString(2, password);
+                pst.executeUpdate();
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(dblogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException | SQLException ex) {
-        Logger.getLogger(dblogin.class.getName()).log(Level.SEVERE, null, ex);
     }
-}
-
-
-
 }

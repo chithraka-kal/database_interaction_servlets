@@ -18,10 +18,7 @@ public class LoginServlet extends HttpServlet {
 
         dblogin.insertUser(name, pass);
 
-        PrintWriter out = response.getWriter();
-        response.getWriter().println("<html><body>");
-        out.println("Thank You!");
-        response.getWriter().println("</body></html>");
+        response.sendRedirect("form.html");
     }
 
     @Override

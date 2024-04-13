@@ -91,7 +91,7 @@ public final class students_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <input type=\"hidden\" name=\"passwd\" value=\"");
       out.print( user.getPasswd() );
       out.write("\">\r\n");
-      out.write("            <button class=\"button\" type=\"submit\">Prefect</button>\r\n");
+      out.write("            <button class=\"button\" id=\"myButton\" type=\"submit\" value=\"add\" onclick=\"handleClick()\">Prefect</button>\r\n");
       out.write("        </form>\r\n");
       out.write("    </div>\r\n");
       out.write("    ");
@@ -99,6 +99,7 @@ public final class students_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("    <div style=\"clear: both;\"></div>\r\n");
       out.write("    </div>\r\n");
+      out.write("    <script>\r\n");
       out.write("</body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
