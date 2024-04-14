@@ -49,9 +49,9 @@ public class dblogin {
                 while (rs.next()) {
                     String uname = rs.getString("uname");
                     String passwd = rs.getString("passwd");
-                    String imgFileName = rs.getString("img");
+                    String imgg = rs.getString("img");
 
-                    User user = new User(uname, passwd, imgFileName);
+                    User user = new User(uname, passwd, imgg);
                     userList.add(user);
                 }
             }
@@ -63,10 +63,10 @@ public class dblogin {
     }
     
     // Insert data into prefect table
-    public static void insertPrefect(String uname, String passwd) {
+    public static void insertPrefect(String uname, String passwd, String imgg) {
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/login";
-        String query = "INSERT INTO `prefect`(`username`, `password`) VALUES (?, ?)";
+        String query = "INSERT INTO `prefect`(`username`, `password`, `img`) VALUES (?, ?, ?)";
 
         try {
             Class.forName(driver);
@@ -74,11 +74,13 @@ public class dblogin {
                  PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, uname);
                 pst.setString(2, passwd);
+                pst.setString(3, imgg);
                 pst.executeUpdate();
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(dblogin.class.getName()).log(Level.SEVERE, null, ex);
         }
+              
     }
         
     // Retrieve all prefects from prefect table
@@ -98,8 +100,9 @@ public class dblogin {
                 while (rs.next()) {
                     String username = rs.getString("username");
                     String password = rs.getString("password");
+                    String imgFileName = rs.getString("img");
 
-                    Prefect prefect = new Prefect(username, password);
+                    Prefect prefect = new Prefect(username, password, imgFileName);
                     prefectList.add(prefect);
                 }
             }
@@ -111,10 +114,10 @@ public class dblogin {
     }
 
     // Remove data from prefect table
-    public static void removePrefect(String username, String password) {
+    public static void removePrefect(String username, String password, String img) {
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/login";
-        String query = "DELETE FROM prefect WHERE username = ? AND password = ?";
+        String query = "DELETE FROM prefect WHERE username = ? AND password = ? AND img = ?";
 
         try {
             Class.forName(driver);
@@ -122,6 +125,7 @@ public class dblogin {
                  PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, username);
                 pst.setString(2, password);
+                pst.setString(3, img);
                 pst.executeUpdate();
             }
         } catch (ClassNotFoundException | SQLException ex) {

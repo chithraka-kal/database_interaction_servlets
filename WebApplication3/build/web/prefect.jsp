@@ -28,7 +28,7 @@
     for (Prefect prefect : prefectList) {
     %>
     <div class="prefect">
-        <img src="user.jpg" alt="User Image">
+        <img src="img/<%= prefect.getImg() %>" alt="User Image">
         <div><%= prefect.getUsername() %></div>
         <div><%= prefect.getPassword() %></div>
          <form action="PrefectServlet" method="post">

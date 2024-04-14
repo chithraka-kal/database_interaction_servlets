@@ -32,10 +32,11 @@
         <img src="img/<%= user.getImg() %>" alt="User Image">
         <div>User Name: <%= user.getUname() %></div>
         <div>Password: <%= user.getPasswd() %></div>
-        <form action="PrefectServlet" method="post">
+        <form action="PrefectServlet" method="post" enctype="multipart/form-data">
             <input type="hidden" name="uname" value="<%= user.getUname() %>">
             <input type="hidden" name="passwd" value="<%= user.getPasswd() %>">
-            <button class="button" id="myButton" type="submit" value="add" onclick="handleClick()">Prefect</button>
+            <input type="hidden" name="imgg" value="img/<%= user.getImg() %>">
+            <button class="button" id="myButton" type="submit" value="add" >Prefect</button>
         </form>
     </div>
     <% } %>

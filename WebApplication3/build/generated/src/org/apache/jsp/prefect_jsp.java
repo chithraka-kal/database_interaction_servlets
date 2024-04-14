@@ -76,7 +76,9 @@ public final class prefect_jsp extends org.apache.jasper.runtime.HttpJspBase
     
       out.write("\r\n");
       out.write("    <div class=\"prefect\">\r\n");
-      out.write("        <img src=\"user.jpg\" alt=\"User Image\">\r\n");
+      out.write("        <img src=\"img/");
+      out.print( prefect.getImg() );
+      out.write("\" alt=\"User Image\">\r\n");
       out.write("        <div>");
       out.print( prefect.getUsername() );
       out.write("</div>\r\n");
