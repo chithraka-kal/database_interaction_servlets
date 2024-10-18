@@ -69,10 +69,18 @@ public final class students_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</head>\r\n");
       out.write("<body>\r\n");
       out.write("    <h1>Student Details</h1>\r\n");
+      out.write("        <div class=\"wishlist-summary\">\r\n");
+      out.write("            ");
+ List<User> userList = dblogin.getAllUsers(); 
+      out.write("\r\n");
+      out.write("            <p>Total Students: ");
+      out.print( userList.size() );
+      out.write("</p>\r\n");
+      out.write("        </div>    \r\n");
       out.write("    <div class=\"max-container\">\r\n");
       out.write("    ");
  
-    List<User> userList = dblogin.getAllUsers();
+    
     for (User user : userList) {
     
       out.write("\r\n");

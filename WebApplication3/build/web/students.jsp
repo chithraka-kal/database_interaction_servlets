@@ -23,9 +23,13 @@
 </head>
 <body>
     <h1>Student Details</h1>
+        <div class="wishlist-summary">
+            <% List<User> userList = dblogin.getAllUsers(); %>
+            <p>Total Students: <%= userList.size() %></p>
+        </div>    
     <div class="max-container">
     <% 
-    List<User> userList = dblogin.getAllUsers();
+    
     for (User user : userList) {
     %>
     <div class="user">
